@@ -1,0 +1,22 @@
+{% load static %} <!--Para poder cargar mis recursos estaticos(CSS)-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia de templates</title> <!--Puedo definirle un bloque dentro del titulo para que todos los que hereden puedan personalizar su titulo-->
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}"> <!--Cargo los estilos dinamicamente, la carpeta "static" debe ser nombrada asi por ley-->
+</head>
+<body>
+
+    <main>
+        <img src="{% static 'mi_app/budaPaleta.jpg' %}" class="top">
+        <h1>Bienvenidos a mi aplicación.</h1>
+        <!-- Todo lo definido se reutilizara donde yo quiera, a partir de los Templates Tags de abajo, se añadira lo extra -->
+        {% block contenido  %} {% endblock %}
+
+    </main>
+    
+</body>
+</html>

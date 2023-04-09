@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.titulo }}</title>
+</head>
+<body>
+
+    <main>
+        <h1>Página dinámica utilizando variables en la URL.</h1>
+        <h2>{{ post.titulo }}</h2>
+        <span class="date"> {{ post.creacion }} </span>
+        <p>{{ post.contenido }}</p>
+        {% if request.user.is_authenticated and user.is_staff%}
+            <p>Acceso exclusivo a usuarios autenticados y del staff(También pudiera ser super usuario "user.is_superuser" o que forme parte de un grupo, etc) V306</p>
+            <p>
+                <!--algunos guiones bajos en realidad son las diagonales / de mi URL admin-->
+                <a href="{% url 'admin:mi_app_post_change' post.id %}" class="edit">Editar entrada</a>
+            </p>
+        {% endif %}
+        <a href="/">Volver a la página principal</a>
+    </main>
+    
+</body>
+</html>

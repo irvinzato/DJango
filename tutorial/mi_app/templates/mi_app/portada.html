@@ -1,0 +1,25 @@
+{% extends "mi_app/base.html" %} <!--Para utilizar "Herencia de Templates"-->
+
+{% block contenido %} <!--Se añade donde indique en mi archivo "base.html" este bloque-->
+    <h2>Hola Irving</h2>
+    <p>Utilizo "Template Tag" para poder acceder a la variable donde tengo almacenadas las entradas</p>
+    <p>Patron MVT(Modelo-Vista-Template)</p>
+    <p>Estas son las entradas mas recientes:</p>
+    {{ posts }}
+
+    <p>Recorro las entradas del QueryPost con un Template Tag con porciento</p>
+    {% for post in posts %}
+        <div>
+            <h3> {{ post.titulo }} </h3>
+            <span class="date"> {{ post.creacion }} </span>
+            <p>"Template Filters" para poder filtar nuestra información(Como los pipes)</p>
+            <p>{{ post.contenido | truncatewords:"20" }}</p>
+            <p>{{ post.creacion | date:"SHORT_DATE_FORMAT" }}</p>
+            <!--Hago la re dirección del href de forma dinámica ! apoyandome del urls.py y del Template Tags. Importante los espacios-->
+            <a href="{% url 'post' id=post.id %}">Leer más del post</a>
+            <!-- ANTES - NO FLEXIBLE
+            <a href="/post/{{ post.id }}">Leer más del post</a>
+            -->
+        </div>
+    {% endfor %}
+{% endblock %}
